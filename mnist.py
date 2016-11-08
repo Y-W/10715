@@ -186,16 +186,19 @@ if __name__ == "__main__":
         # W updates
         W = lasagne.layers.get_all_params(mlp, binary=True)
         W_grads = binary_net.compute_grads(loss,mlp)
-        updates = lasagne.updates.adam(loss_or_grads=W_grads, params=W, learning_rate=LR)
+        # updates = lasagne.updates.adam(loss_or_grads=W_grads, params=W, learning_rate=LR)
+        updates = lasagne.updates.sgd(loss_or_grads=W_grads, params=W, learning_rate=LR)
         updates = binary_net.clipping_scaling(updates,mlp)
         
         # other parameters updates
         params = lasagne.layers.get_all_params(mlp, trainable=True, binary=False)
-        updates = OrderedDict(updates.items() + lasagne.updates.adam(loss_or_grads=loss, params=params, learning_rate=LR).items())
+        # updates = OrderedDict(updates.items() + lasagne.updates.adam(loss_or_grads=loss, params=params, learning_rate=LR).items())
+        updates = OrderedDict(updates.items() + lasagne.updates.sgd(loss_or_grads=loss, params=params, learning_rate=LR).items())
         
     else:
         params = lasagne.layers.get_all_params(mlp, trainable=True)
-        updates = lasagne.updates.adam(loss_or_grads=loss, params=params, learning_rate=LR)
+        # updates = lasagne.updates.adam(loss_or_grads=loss, params=params, learning_rate=LR)
+        updates = lasagne.updates.sgd(loss_or_grads=loss, params=params, learning_rate=LR)
 
     test_output = lasagne.layers.get_output(mlp, deterministic=True)
     test_loss = T.mean(T.sqr(T.maximum(0.,1.-target*test_output)))
