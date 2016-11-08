@@ -333,8 +333,8 @@ def train(train_fn,val_fn,
             
             test_err, test_loss = val_epoch(X_test,y_test)
             
-            if save_path is not None:
-                np.savez(save_path, *lasagne.layers.get_all_param_values(model))
+            # if save_path is not None:
+            #     np.savez(save_path, *lasagne.layers.get_all_param_values(model))
         
         epoch_duration = time.time() - start_time
         
