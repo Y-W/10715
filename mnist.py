@@ -56,16 +56,16 @@ if __name__ == "__main__":
     # print("activation = binary_net.binary_tanh_unit")
     # activation = binary_net.binary_sigmoid_unit
     # print("activation = binary_net.binary_sigmoid_unit")
-    activation = binary_net.sgn_pg
-    print("activation = binary_net.sgn_pg")
-    binary_net.sgn_pg_threshold=1.0
-    print("activation_threshold = " + str(binary_net.sgn_pg_threshold))
-#     activation = binary_net.sgn2_pg
-#     print("activation = binary_net.sgn2_pg")
-#     binary_net.sgn_pg_alpha=2.0
-#     binary_net.sgn_pg_beta=2.0
-#     print("activation_alpha = " + str(binary_net.sgn_pg_alpha))
-#     print("activation_beta = " + str(binary_net.sgn_pg_beta))
+#     activation = binary_net.sgn_pg
+#     print("activation = binary_net.sgn_pg")
+#     binary_net.sgn_pg_threshold=1.0
+#     print("activation_threshold = " + str(binary_net.sgn_pg_threshold))
+    activation = binary_net.sgn2_pg
+    print("activation = binary_net.sgn2_pg")
+    binary_net.sgn_pg2_alpha=1.0
+    binary_net.sgn_pg2_beta=8.0
+    print("activation_alpha = " + str(binary_net.sgn_pg2_alpha))
+    print("activation_beta = " + str(binary_net.sgn_pg2_beta))
     
 
     # BinaryConnect
