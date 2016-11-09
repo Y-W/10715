@@ -36,13 +36,13 @@ if __name__ == "__main__":
     print("epsilon = "+str(epsilon))
     
     # MLP parameters
-    num_units = 512 # 4096
+    num_units = 128 # 4096
     print("num_units = "+str(num_units))
     n_hidden_layers = 2 # 3
     print("n_hidden_layers = "+str(n_hidden_layers))
     
     # Training parameters
-    num_epochs = 50 # 1000
+    num_epochs = 100 # 1000
     print("num_epochs = "+str(num_epochs))
     
     # Dropout parameters
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # print("activation = binary_net.binary_sigmoid_unit")
     activation = binary_net.sgn_pg
     print("activation = binary_net.sgn_pg")
-    binary_net.sgn_pg_threshold=0.1
+    binary_net.sgn_pg_threshold=1.0
     print("activation_threshold = " + str(binary_net.sgn_pg_threshold))
 #     activation = binary_net.sgn2_pg
 #     print("activation = binary_net.sgn2_pg")
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     
 
     # BinaryConnect
-    binary = True # False # True
+    binary = False # True
     print("binary = "+str(binary))
     stochastic = False
     print("stochastic = "+str(stochastic))
@@ -77,12 +77,12 @@ if __name__ == "__main__":
     # H = "Glorot"
     H = 1.
     print("H = "+str(H))
-    # W_LR_scale = 1.    
-    W_LR_scale = "Glorot" # "Glorot" means we are using the coefficients from Glorot's paper
+    W_LR_scale = 1.    
+    # W_LR_scale = "Glorot" # "Glorot" means we are using the coefficients from Glorot's paper
     print("W_LR_scale = "+str(W_LR_scale))
     
     # Decaying LR 
-    LR_start = .003
+    LR_start = 10.0
     print("LR_start = "+str(LR_start))
     LR_fin = LR_start # 0.0000003
     print("LR_fin = "+str(LR_fin))
@@ -179,7 +179,7 @@ if __name__ == "__main__":
     train_output = lasagne.layers.get_output(mlp, deterministic=False)
     
     # squared hinge loss
-    loss = T.mean(T.sqr(T.maximum(0.,1.-target*train_output)))
+    loss = T.mean(T.maximum(0.,1.-target*train_output)) # T.mean(T.sqr(T.maximum(0.,1.-target*train_output)))
     
     if binary:
         

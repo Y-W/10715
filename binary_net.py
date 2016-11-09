@@ -69,7 +69,7 @@ class Sgn2_PG(Sgn):
     def grad(self, inputs, gout):
         (x,) = inputs
         (gz,) = gout
-        return [gz *sgn_pg2_alpha * exp(-sgn_pg2_beta * x * x)]
+        return [gz *sgn_pg2_alpha * exp(-sgn_pg2_beta * abs(x))]
 
 # TODO: A more elegant way to inject operators into packages?
 theano.scalar.sgn2_pg = Sgn2_PG(same_out_nocomplex, name='sgn2_pg')
